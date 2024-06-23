@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up and Login Form</title>
+    <style>
+        body {
+            background: blanchedalmond;
+            margin: 0;
+            padding: 3%;
+            text-align: center;
+        }
+        .form-container {
+            display: none;
+            text-align: left;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+        }
+        .form-container.active {
+            display: block;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .switch-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function showForm(formId) {
+            document.getElementById('signup-form').classList.remove('active');
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById(formId).classList.add('active');
+        }
+
+        window.onload = function() {
+            showForm('signup-form'); // Change to 'login-form' to display login form first
+        };
+    </script>
+</head>
+<body>
+    <div id="signup-form" class="form-container active">
+        <h1>Sign Up</h1>
+        <h4>It will hardly take a minute for sign up</h4>
+        <form action="signup_process.php" method="post" enctype="multipart/form-data">
+            <label>First Name</label>
+            <input type="text" name="first_name" required>
+
+            <label>Last Name</label>
+            <input type="text" name="last_name" required>
+
+            <label>Contact No</label>
+            <input type="text" name="contact_no" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required>
+
+            <label>Add Passport Size Picture</label>
+            <input type="file" name="profile_picture" required>
+
+            <input type="submit" value="SUBMIT">
+        </form>
+        <p>By clicking the sign up button, you agree to our 
+            <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>.
+        </p>
+        <div class="switch-link">
+            <p>Already have an account? <a href="javascript:void(0)" onclick="showForm('login-form')">Login Here</a></p>
+        </div>
+    </div>
+
+    <div id="login-form" class="form-container">
+        <h1>Login</h1>
+        <form action="login_process.php" method="post">
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="LOGIN">
+        </form>
+        <div class="switch-link">
+            <p>Don't have an account? <a href="javascript:void(0)" onclick="showForm('signup-form')">Sign Up Here</a></p>
+        </div>
+    </div>
+</body>
+</html>
